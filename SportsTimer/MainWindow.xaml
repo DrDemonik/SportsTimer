@@ -6,7 +6,17 @@
         xmlns:local="clr-namespace:SportsTimer"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:TimerViewModel/>
+    </Window.DataContext>
     <Grid>
-        
+        <Button Content="Старт" HorizontalAlignment="Left" Height="46" Margin="116,217,0,0" VerticalAlignment="Top" Width="151" Command="{Binding StartCurrentTimer}"/>
+        <Button Content="Стоп" HorizontalAlignment="Left" Height="46" Margin="367,217,0,0" VerticalAlignment="Top" Width="164" Command="{Binding StopCurrentTimer}"/>
+        <TextBlock Grid.Column="0" Grid.Row="0" Margin="116,102,323,239"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   FontSize="32" FontWeight="Bold"
+                   Text="{Binding TextTimer}" RenderTransformOrigin="0.5,0.5" Width="353" Height="82">
+        </TextBlock>
+
     </Grid>
 </Window>

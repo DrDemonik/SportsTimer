@@ -5,18 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SportsTimer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="447" Width="798">
     <Window.DataContext>
         <local:TimerViewModel/>
     </Window.DataContext>
-    <Grid>
-        <Button Content="Старт" HorizontalAlignment="Left" Height="46" Margin="116,217,0,0" VerticalAlignment="Top" Width="151" Command="{Binding StartCurrentTimer}"/>
-        <Button Content="Стоп" HorizontalAlignment="Left" Height="46" Margin="367,217,0,0" VerticalAlignment="Top" Width="164" Command="{Binding StopCurrentTimer}"/>
-        <TextBlock Grid.Column="0" Grid.Row="0" Margin="116,102,323,239"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"
+    <Grid Margin="0,0,0,1">
+        <Button Content="Старт" HorizontalAlignment="Left" Height="46" Margin="10,92,0,0" VerticalAlignment="Top" Width="151" Command="{Binding StartCurrentTimer}"/>
+        <Button Content="Стоп" HorizontalAlignment="Left" Height="46" Margin="191,92,0,0" VerticalAlignment="Top" Width="164" Command="{Binding StopCurrentTimer}"/>
+        <TextBlock Name="text1" Grid.Column="0" Grid.Row="0" Margin="10,32,0,0"
+                   VerticalAlignment="Top" HorizontalAlignment="Left"
                    FontSize="32" FontWeight="Bold"
-                   Text="{Binding TextTimer}" RenderTransformOrigin="0.5,0.5" Width="353" Height="82">
+                   Text="{Binding CurrentTime.TextTimer}" RenderTransformOrigin="0.5,0.5" Width="727" Height="46">
         </TextBlock>
+        <Button Content="Сброс" HorizontalAlignment="Left" Height="46" Margin="573,92,0,0" VerticalAlignment="Top" Width="164" Command="{Binding DeleteAllTimer}"/>
+        <Button Content="Круг" HorizontalAlignment="Left" Height="46" Margin="382,92,0,0" VerticalAlignment="Top" Width="164" Command="{Binding AddPointInList}"/>
+        <DataGrid HorizontalAlignment="Left" Height="190" Margin="19,164,0,0" VerticalAlignment="Top" Width="718" ItemsSource="{Binding RunningTimes}" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Круг" Binding="{Binding Num}"/>
+                <DataGridTextColumn Header="Время" Binding="{Binding TextTimer}"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Window>

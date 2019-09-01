@@ -8,10 +8,11 @@ using System.ComponentModel;
 
 namespace SportsTimer
 {
-    class Timer : INotifyPropertyChanged
+    class RunningTime : INotifyPropertyChanged
     {
         private int _num;
-        private int _countMilisec;
+        private TimeSpan _countMilisec;
+        private string _textTimer;
         public int Num
         {
             get { return _num; }
@@ -21,14 +22,24 @@ namespace SportsTimer
                 OnPropertyChanged("Num");
             }
         }
-        public int CountMilisec
+        public TimeSpan CountMilisec
         {
             get { return _countMilisec; }
             set
             {
                 _countMilisec = value;
-                OnPropertyChanged("Delta");
+                _textTimer= _countMilisec.ToString();                
+                OnPropertyChanged("TextTimer");
             }
+        }
+        public string TextTimer
+        {
+            get { return _textTimer; }
+        }
+
+        public RunningTime()
+        {
+            CountMilisec = new TimeSpan();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

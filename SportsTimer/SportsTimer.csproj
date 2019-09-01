@@ -71,7 +71,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Timer.cs" />
+    <Compile Include="Model\RunningTime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

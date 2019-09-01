@@ -7,42 +7,44 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Windows.Threading;
 using System.Windows.Input;
+using System.Collections.ObjectModel;
 
 namespace SportsTimer
 {
-    class TimerViewModel : INotifyPropertyChanged
-    {
-
+    class TimerViewModel 
+    {        
         private DispatcherTimer timer = null;
-        private int stepInMs = 1000;
+        private int stepInMs = 50;
 
-        private Timer _currentTime;
+        private RunningTime _currentTime;
 
-        public Timer CurrentTime
+        public RunningTime CurrentTime
         {
             get { return _currentTime; }
             set
             {
                 _currentTime = value;
-                OnPropertyChanged("CurrentTime");
             }
         }
 
+        private ObservableCollection<RunningTime> _runningTimes;
 
-        private string _textTimer;
-
-        public string TextTimer
+        public ObservableCollection<RunningTime> RunningTimes
         {
-            get { return _textTimer; }
+            get { return _runningTimes; }
             set
             {
-                _textTimer = value;
-                OnPropertyChanged("TextTimer");
+                _runningTimes = value;
             }
         }
 
         public ICommand StartCurrentTimer { get; set; }
         public ICommand StopCurrentTimer { get; set; }
+        public ICommand DeleteAllTimer { get; set; }
+        public ICommand AddPointInList { get; set; }
+
+
+        DateTime Before;
 
         public TimerViewModel()
         {
@@ -52,19 +54,23 @@ namespace SportsTimer
 
             StartCurrentTimer = new RelayCommand(Start);
             StopCurrentTimer = new RelayCommand(Stop);
+            DeleteAllTimer = new RelayCommand(Delete);
+            AddPointInList = new RelayCommand(AddPoint);
 
-            CurrentTime = new Timer();
+            CurrentTime = new RunningTime();
+            RunningTimes = new ObservableCollection<RunningTime>();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            CurrentTime.CountMilisec += stepInMs;
-            TextTimer = TimeSpan.FromMilliseconds(CurrentTime.CountMilisec).ToString();
+            CurrentTime.CountMilisec +=  DateTime.UtcNow.Subtract(Before);
+            Before = DateTime.UtcNow;
         }
 
         void Start()
         {
-            timer?.Start();
+            Before = DateTime.UtcNow;
+            timer?.Start();            
         }
 
         void Stop()
@@ -72,10 +78,15 @@ namespace SportsTimer
             timer?.Stop();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
+        void Delete()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            timer?.Stop();
+            CurrentTime = new RunningTime();
+            RunningTimes = new ObservableCollection<RunningTime>();
+        }
+        void AddPoint()
+        {
+            RunningTimes.Add(new RunningTime() { CountMilisec = CurrentTime.CountMilisec, Num = RunningTimes.Count + 1 });
         }
     }
 }

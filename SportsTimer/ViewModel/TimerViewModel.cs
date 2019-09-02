@@ -11,7 +11,7 @@ using System.Collections.ObjectModel;
 
 namespace SportsTimer
 {
-    class TimerViewModel 
+    public class TimerViewModel 
     {        
         private DispatcherTimer timer = null;
         private int stepInMs = 50;
@@ -84,6 +84,7 @@ namespace SportsTimer
             CurrentTime = new RunningTime();
             RunningTimes = new ObservableCollection<RunningTime>();
         }
+
         void AddPoint()
         {
             RunningTimes.Add(new RunningTime() { CountMilisec = CurrentTime.CountMilisec, Num = RunningTimes.Count + 1 });

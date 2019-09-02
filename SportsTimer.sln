@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsTimer", "SportsTimer\SportsTimer.csproj", "{EDAE5276-29DE-45AB-B3E7-5E3DC6C182A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsTimer.Tests", "SportsTimer.Tests\SportsTimer.Tests.csproj", "{AA6C2835-1794-4B05-B33C-43AC9265F9B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{EDAE5276-29DE-45AB-B3E7-5E3DC6C182A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDAE5276-29DE-45AB-B3E7-5E3DC6C182A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDAE5276-29DE-45AB-B3E7-5E3DC6C182A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA6C2835-1794-4B05-B33C-43AC9265F9B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA6C2835-1794-4B05-B33C-43AC9265F9B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA6C2835-1794-4B05-B33C-43AC9265F9B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA6C2835-1794-4B05-B33C-43AC9265F9B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

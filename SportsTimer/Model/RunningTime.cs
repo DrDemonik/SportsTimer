@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace SportsTimer
 {
-    class RunningTime : INotifyPropertyChanged
+    public class RunningTime : INotifyPropertyChanged
     {
         private int _num;
         private TimeSpan _countMilisec;

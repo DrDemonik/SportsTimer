@@ -11,7 +11,7 @@ using System.Collections.ObjectModel;
 
 namespace SportsTimer
 {
-    public class TimerViewModel 
+    public class TimerViewModel : INotifyPropertyChanged
     {        
         private DispatcherTimer timer = null;
         private int stepInMs = 50;
@@ -24,6 +24,7 @@ namespace SportsTimer
             set
             {
                 _currentTime = value;
+                OnPropertyChanged("CurrentTime");
             }
         }
 
@@ -35,6 +36,8 @@ namespace SportsTimer
             set
             {
                 _runningTimes = value;
+                OnPropertyChanged("RunningTimes");
+
             }
         }
 
@@ -88,6 +91,12 @@ namespace SportsTimer
         void AddPoint()
         {
             RunningTimes.Add(new RunningTime() { CountMilisec = CurrentTime.CountMilisec, Num = RunningTimes.Count + 1 });
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
